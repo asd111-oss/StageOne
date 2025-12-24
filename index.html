@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StageOne — Digital Evolution Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Plus+Jakarta+Sans:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --lime: #ccff00; --bg: #050505; --card: rgba(255, 255, 255, 0.03); }
+        body { background-color: var(--bg); color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; cursor: none; }
+        .noise::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.05; pointer-events: none; z-index: 50; }
+        .glow-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(204, 255, 0, 0.04) 0%, transparent 60%); z-index: 0; pointer-events: none; }
+        .s-glyph { font-family: 'Orbitron', sans-serif; font-weight: 900; line-height: 0; display: block; }
+        #s-cursor { width: 32px; height: 32px; border: 1px solid var(--lime); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; display: flex; align-items: center; justify-content: center; transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); transform: translate(-50%, -50%); backdrop-filter: blur(2px); }
+        #s-cursor span { color: var(--lime); font-size: 11px; }
+
+        /* ЗАГОЛОВОК */
+        .hero-title { font-family: 'Orbitron', sans-serif; font-size: clamp(4rem, 14vw, 12rem); line-height: 0.85; letter-spacing: -0.05em; text-transform: uppercase; color: #fff; }
+        .hero-stroke { -webkit-text-stroke: 1px rgba(255,255,255,0.15); color: transparent; }
+
+        .bento-card { background: var(--card); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 40px; transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); overflow: hidden; position: relative; }
+        .bento-card:hover { border-color: var(--lime); background: rgba(255, 255, 255, 0.05); transform: translateY(-5px); }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.23, 1, 0.32, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body class="noise">
+    <div class="glow-bg"></div>
+    <div id="s-cursor"><span class="s-glyph">S</span></div>
+
+    <!-- 1. НАВИГАЦИЯ -->
+    <nav class="fixed top-8 left-1/2 -translate-x-1/2 z-[100] w-[90%] max-w-7xl flex justify-between items-center px-8 py-4 bg-black/40 backdrop-blur-3xl border border-white/5 rounded-full">
+        <a href="index.html" class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-[var(--lime)] rounded-full flex items-center justify-center"><span class="s-glyph text-black text-xl">S</span></div>
+            <span class="text-[10px] font-extrabold uppercase tracking-[0.4em] opacity-40">StageOne</span>
+        </a>
+        <div class="flex items-center space-x-10">
+            <div class="relative group">
+                <button class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 group-hover:text-[var(--lime)] transition py-2">Компания</button>
+                <div class="absolute top-full right-0 mt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform scale-95 group-hover:scale-100">
+                    <div class="bg-black/95 border border-white/10 p-8 rounded-[32px] backdrop-blur-3xl w-64 space-y-5 shadow-2xl text-right">
+                        <a href="index.html#about" class="block text-[10px] uppercase tracking-widest text-white/40 hover:text-[var(--lime)]">О компании</a>
+                        <a href="index.html#directions" class="block text-[10px] uppercase tracking-widest text-white/40 hover:text-[var(--lime)]">Направления</a>
+                        <a href="index.html#unique" class="block text-[10px] uppercase tracking-widest text-white/40 hover:text-[var(--lime)]">Уникальность</a>
+                        <a href="cases.html" class="block text-[10px] uppercase tracking-widest text-white/40 hover:text-[var(--lime)]">Кейсы подробно</a>
+                        <a href="about.html" class="block text-[10px] uppercase tracking-widest text-white/40 hover:text-[var(--lime)]">Стек технологий</a>
+                    </div>
+                </div>
+            </div>
+            <a href="#contact" class="px-8 py-3 bg-white text-black text-[10px] font-extrabold uppercase tracking-widest rounded-full hover:bg-[var(--lime)] transition-all">Связаться</a>
+        </div>
+    </nav>
+
+    <!-- 2. HERO SECTION -->
+    <section class="relative min-h-screen flex flex-col items-center justify-center text-center px-6">
+        <h1 class="hero-title reveal">Stage<span class="hero-stroke">One</span></h1>
+        <p class="mt-10 text-[10px] md:text-xs uppercase tracking-[0.8em] text-white/40 reveal">Цифровая диверсификация бизнеса</p>
+    </section>
+
+    <!-- 3. О НАС -->
+    <section id="about" class="py-40 px-6 md:px-12 max-w-7xl mx-auto reveal">
+        <div class="flex flex-col lg:flex-row items-end justify-between gap-16">
+            <div class="lg:w-2/3 space-y-12">
+                <div class="w-16 h-1 bg-[var(--lime)]"></div>
+                <h2 class="text-4xl md:text-7xl font-bold uppercase tracking-tighter leading-none">МЫ ПРЕВРАЩАЕМ <span class="text-[var(--lime)]">ИДЕИ</span> <br> В КОМПАНИИ.</h2>
+            </div>
+            <div class="lg:w-1/3 space-y-10 pb-4">
+                <p class="text-white/40 text-lg leading-relaxed font-light">StageOne — это технологический бутик. Мы помогаем находить точки роста через AI и автоматизацию.</p>
+                <a href="about.html" class="inline-flex items-center space-x-4 group/link">
+                    <span class="text-[10px] font-black uppercase tracking-widest border-b border-[var(--lime)] pb-2 text-[var(--lime)]">Подробнее о компании</span>
+                    <span class="text-[var(--lime)] group-hover/link:translate-x-2 transition-transform">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. НАПРАВЛЕНИЯ -->
+    <section id="directions" class="py-20 px-6 md:px-12 max-w-7xl mx-auto">
+        <h2 class="text-xs font-black uppercase tracking-[0.8em] text-white/20 mb-16 reveal">Направления работы</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bento-card p-10 reveal"><h4 class="text-xl font-bold uppercase mb-4">Консалтинг</h4><p class="text-[11px] text-white/30 leading-relaxed">ИТ-аудит и маркетинговое ядро.</p></div>
+            <div class="bento-card p-10 reveal" style="transition-delay: 0.1s;"><h4 class="text-xl font-bold uppercase mb-4">AI-сервисы</h4><p class="text-[11px] text-white/30 leading-relaxed">CV, нейросети и Machine Learning.</p></div>
+            <div class="bento-card p-10 reveal" style="transition-delay: 0.2s;"><h4 class="text-xl font-bold uppercase mb-4">Аналитика</h4><p class="text-[11px] text-white/30 leading-relaxed">Big Data и поиск ниш.</p></div>
+            <div class="bento-card p-10 reveal" style="transition-delay: 0.3s;"><h4 class="text-xl font-bold uppercase mb-4">Разработка</h4><p class="text-[11px] text-white/30 leading-relaxed">Запуск сложных ИТ-систем.</p></div>
+        </div>
+    </section>
+
+    <!-- 5. УНИКАЛЬНОСТЬ -->
+    <section id="unique" class="py-20 px-6 md:px-12 max-w-7xl mx-auto">
+        <h2 class="text-xs font-black uppercase tracking-[0.8em] text-white/20 mb-16 reveal">Наша уникальность</h2>
+        <div class="grid lg:grid-cols-2 gap-8">
+            <div class="bento-card p-16 reveal">
+                <h4 class="text-3xl font-bold uppercase mb-8 text-[var(--lime)]">Общие риски</h4>
+                <p class="text-white/40 leading-relaxed">Разделяем финансовые риски проекта, работая на результат.</p>
+            </div>
+            <div class="bento-card p-16 reveal" style="transition-delay: 0.1s;">
+                <h4 class="text-3xl font-bold uppercase mb-8 text-[var(--lime)]">Глобальный рынок</h4>
+                <p class="text-white/40 leading-relaxed">Готовим продукт к международной экспансии с первого дня.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. КЕЙСЫ (ВСЕ 6 ПРОЕКТОВ) -->
+    <section id="cases" class="py-40 px-6 md:px-12 max-w-7xl mx-auto">
+        <h2 class="text-xs font-black uppercase tracking-[0.8em] text-white/20 mb-16 reveal">Все кейсы</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bento-card p-10 reveal group"><h3 class="text-2xl font-bold uppercase group-hover:text-[var(--lime)] transition">Neuroenot</h3><p class="text-[10px] text-white/20 uppercase mt-2">Нейросети</p></div>
+            <div class="bento-card p-10 reveal group"><h3 class="text-2xl font-bold uppercase group-hover:text-[var(--lime)] transition">CoolTrackVision</h3><p class="text-[10px] text-white/20 uppercase mt-2">Видеоаналитика</p></div>
+            <div class="bento-card p-10 reveal group"><h3 class="text-2xl font-bold uppercase group-hover:text-[var(--lime)] transition">Androbot</h3><p class="text-[10px] text-white/20 uppercase mt-2">Робототехника</p></div>
+            <div class="bento-card p-10 reveal group"><h3 class="text-2xl font-bold uppercase group-hover:text-[var(--lime)] transition">AI Models</h3><p class="text-[10px] text-white/20 uppercase mt-2">R&D Лаборатория</p></div>
+            <div class="bento-card p-10 reveal group"><h3 class="text-2xl font-bold uppercase group-hover:text-[var(--lime)] transition">Metaverse</h3><p class="text-[10px] text-white/20 uppercase mt-2">Виртуальные миры</p></div>
+            <div class="bento-card p-10 reveal group"><h3 class="text-2xl font-bold uppercase group-hover:text-[var(--lime)] transition">Заводы</h3><p class="text-[10px] text-white/20 uppercase mt-2">Индустрия 4.0</p></div>
+        </div>
+        <div class="mt-20 text-center reveal">
+            <a href="cases.html" class="inline-flex items-center space-x-4 group/btn">
+                <span class="text-[10px] font-black uppercase tracking-[0.5em] text-[var(--lime)] border-b border-[var(--lime)] pb-2">Подробное описание кейсов</span>
+                <span class="text-[var(--lime)] group-hover/btn:translate-x-2 transition-transform">→</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- 7 & 8. ПОДВАЛ (ГИГАНТСКИЙ ЛОГОТИП + ИНФО) -->
+    <footer id="contact" class="pt-60 pb-20 px-10 border-t border-white/5 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-40 overflow-hidden text-center"><h2 class="text-[18vw] font-black uppercase tracking-tighter leading-none text-white/[0.02] select-none">STAGEONE</h2></div>
+            <div class="grid lg:grid-cols-12 gap-24">
+                <div class="lg:col-span-4 space-y-10">
+                    <div class="text-[10px] uppercase tracking-[0.8em] text-[var(--lime)] font-bold">Юридическая информация</div>
+                    <div class="space-y-3 text-[11px] text-white/30 uppercase tracking-[0.3em]"><p class="text-white font-bold">ООО «СТЕЙДЖВАН»</p><p>ИНН: 7707474872</p><p>Москва, ул. Новослободская, д. 20</p></div>
+                </div>
+                <div class="lg:col-span-4 space-y-10">
+                    <div class="text-[10px] uppercase tracking-[0.8em] text-white/20 font-bold">Навигация</div>
+                    <div class="flex flex-col space-y-4 text-[11px] uppercase tracking-widest text-white/40">
+                        <a href="index.html#about" class="hover:text-white transition">О компании</a>
+                        <a href="about.html" class="hover:text-white transition">Технологический стек</a>
+                        <a href="cases.html" class="hover:text-white transition">Все кейсы</a>
+                    </div>
+                </div>
+                <div class="lg:col-span-4 space-y-10">
+                    <div class="text-[10px] uppercase tracking-[0.8em] text-white/20 font-bold">Контакты</div>
+                    <a href="mailto:hello@stageone.space" class="text-[14px] uppercase tracking-widest text-[var(--lime)] font-bold">hello@stageone.space</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const sCursor = document.getElementById('s-cursor');
+        const sText = sCursor.querySelector('span');
+        const glow = document.querySelector('.glow-bg');
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX; const y = e.clientY;
+            sCursor.style.left = x + 'px'; sCursor.style.top = y + 'px';
+            glow.style.setProperty('--x', (x / window.innerWidth * 100) + '%');
+            glow.style.setProperty('--y', (y / window.innerHeight * 100) + '%');
+        });
+        document.querySelectorAll('a, button, .bento-card').forEach(el => {
+            el.addEventListener('mouseenter', () => { sCursor.style.width = '60px'; sCursor.style.height = '60px'; sCursor.style.background = 'var(--lime)'; sText.style.color = 'black'; });
+            el.addEventListener('mouseleave', () => { sCursor.style.width = '32px'; sCursor.style.height = '32px'; sCursor.style.background = 'transparent'; sText.style.color = 'var(--lime)'; });
+        });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
