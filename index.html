@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StageOne — Digital Evolution Hub</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Plus+Jakarta+Sans:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --lime: #ccff00; --bg: #050505; --card: rgba(255, 255, 255, 0.03); }
+        body { background-color: var(--bg); color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; cursor: default; }
+        .noise::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.05; pointer-events: none; z-index: 50; }
+        .glow-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(204, 255, 0, 0.04) 0%, transparent 60%); z-index: 0; pointer-events: none; }
+        .s-glyph { font-family: 'Orbitron', sans-serif; font-weight: 900; line-height: 0; display: block; }
+        
+        /* HERO */
+        .hero-title { font-family: 'Orbitron', sans-serif; font-size: clamp(4rem, 14vw, 12rem); line-height: 0.85; letter-spacing: -0.05em; text-transform: uppercase; }
+        .hero-main { color: var(--lime); filter: drop-shadow(0 0 25px rgba(204, 255, 0, 0.3)); }
+        .hero-stroke { -webkit-text-stroke: 1px var(--lime); color: transparent; opacity: 0.7; }
+
+        /* ИНЖЕНЕРНАЯ СХЕМА КЕЙСОВ */
+        .schematic-container { position: relative; width: 100%; max-width: 1000px; height: 700px; margin: 0 auto; }
+        .schematic-svg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; }
+        .gear-node { position: absolute; width: 210px; height: 210px; display: flex; align-items: center; justify-content: center; z-index: 10; transform: translate(-50%, -50%); }
+        .gear-svg-border { width: 100%; height: 100%; animation: rotateGear 60s linear infinite; opacity: 0.6; filter: drop-shadow(0 0 5px var(--lime)); }
+        @keyframes rotateGear { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .rev { animation-direction: reverse; }
+        .gear-label { position: absolute; font-family: 'Orbitron', sans-serif; font-size: 11px; font-weight: 900; color: #fff; text-transform: uppercase; text-align: center; width: 150px; z-index: 20; pointer-events: none; }
+
+        .node-neuro { top: 25%; left: 15%; }
+        .node-cool  { top: 25%; left: 50%; }
+        .node-meta  { top: 25%; left: 85%; }
+        .node-ai    { top: 75%; left: 30%; }
+        .node-andro { top: 75%; left: 70%; }
+
+        .bento-card { background: var(--card); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 40px; transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.23, 1, 0.32, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body class="noise" onmousemove="document.documentElement.style.setProperty('--x', event.clientX + 'px'); document.documentElement.style.setProperty('--y', event.clientY + 'px')">
+    <div class="glow-bg"></div>
+
+    <!-- ОРИГИНАЛЬНАЯ ШАПКА -->
+    <nav class="fixed top-8 left-1/2 -translate-x-1/2 z-[100] w-[90%] max-w-7xl flex justify-between items-center px-8 py-4 bg-black/40 backdrop-blur-3xl border border-white/5 rounded-full">
+        <a href="index.html" class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-[var(--lime)] rounded-full flex items-center justify-center"><span class="s-glyph text-black text-xl">S</span></div>
+            <span class="text-[10px] font-extrabold uppercase tracking-[0.4em] opacity-40">StageOne</span>
+        </a>
+        <div class="flex items-center space-x-10">
+            <div class="relative group">
+                <button class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 group-hover:text-[var(--lime)] transition py-2">Компания</button>
+                <div class="absolute top-full right-0 mt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform scale-95 group-hover:scale-100">
+                    <div class="bg-black/95 border border-white/10 p-8 rounded-[32px] backdrop-blur-3xl w-64 space-y-5 shadow-2xl text-right">
+                        <a href="#about" class="block text-[10px] uppercase tracking-widest text-white/40 hover:text-[var(--lime)]">О компании</a>
+                        <a href="#directions" class="block text-[10px] uppercase tracking-widest text-white/40 hover:text-[var(--lime)]">Направления</a>
+                        <a href="#unique" class="block text-[10px] uppercase tracking-widest text-white/40 hover:text-[var(--lime)]">Уникальность</a>
+                        <a href="cases.html" class="block text-[10px] uppercase tracking-widest text-white/40 hover:text-[var(--lime)]">Кейсы подробно</a>
+                        <a href="about.html" class="block text-[10px] uppercase tracking-widest text-white/40 hover:text-[var(--lime)]">Стек технологий</a>
+                    </div>
+                </div>
+            </div>
+            <a href="#contact" class="px-8 py-3 bg-white text-black text-[10px] font-extrabold uppercase tracking-widest rounded-full hover:bg-[var(--lime)] transition-all">Связаться</a>
+        </div>
+    </nav>
+
+    <!-- 1. HERO (ОРИГИНАЛ) -->
+    <section class="relative min-h-screen flex flex-col items-center justify-center text-center px-6">
+        <h1 class="hero-title reveal"><span class="hero-main">Stage</span><span class="hero-stroke">One</span></h1>
+        <p class="mt-10 text-[10px] md:text-xs uppercase tracking-[0.8em] text-white/40 reveal">Цифровая диверсификация бизнеса</p>
+    </section>
+
+    <!-- 2. О НАС (ОРИГИНАЛ) -->
+    <section id="about" class="py-40 px-6 md:px-12 max-w-7xl mx-auto reveal">
+        <div class="flex flex-col lg:flex-row items-end justify-between gap-16">
+            <div class="lg:w-2/3 space-y-12">
+                <div class="w-16 h-1 bg-[var(--lime)]"></div>
+                <h2 class="text-4xl md:text-7xl font-bold uppercase tracking-tighter leading-none text-left">МЫ ПРЕВРАЩАЕМ <span class="text-[var(--lime)]">ИДЕИ</span> <br> В КОМПАНИИ.</h2>
+            </div>
+            <div class="lg:w-1/3 space-y-10 pb-4">
+                <p class="text-white/40 text-lg leading-relaxed font-light">StageOne — это технологический бутик. Помогаем расти через AI.</p>
+                <a href="about.html" class="inline-flex items-center space-x-4 group/link">
+                    <span class="text-[10px] font-black uppercase tracking-widest border-b border-[var(--lime)] pb-2 text-[var(--lime)]">Подробнее</span>
+                    <span class="text-[var(--lime)] group-hover/link:translate-x-2 transition-transform">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. НАПРАВЛЕНИЯ (ОРИГИНАЛ) -->
+    <section id="directions" class="py-20 px-6 md:px-12 max-w-7xl mx-auto">
+        <h2 class="text-xs font-black uppercase tracking-[0.8em] text-white/20 mb-16 reveal text-left">Направления работы</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bento-card p-10 reveal"><h4 class="text-xl font-bold uppercase mb-4">AI-сервисы</h4><p class="text-[11px] text-white/30 leading-relaxed">CV и нейросети.</p></div>
+            <div class="bento-card p-10 reveal"><h4 class="text-xl font-bold uppercase mb-4">Аналитика</h4><p class="text-[11px] text-white/30 leading-relaxed">Big Data решения.</p></div>
+            <div class="bento-card p-10 reveal"><h4 class="text-xl font-bold uppercase mb-4">Разработка</h4><p class="text-[11px] text-white/30 leading-relaxed">ИТ-системы.</p></div>
+            <div class="bento-card p-10 reveal"><h4 class="text-xl font-bold uppercase mb-4">Консалтинг</h4><p class="text-[11px] text-white/30 leading-relaxed">ИТ-аудит.</p></div>
+        </div>
+    </section>
+
+    <!-- 4. УНИКАЛЬНОСТЬ (ОРИГИНАЛ) -->
+    <section id="unique" class="py-20 px-6 md:px-12 max-w-7xl mx-auto">
+        <h2 class="text-xs font-black uppercase tracking-[0.8em] text-white/20 mb-16 reveal text-left">Наша уникальность</h2>
+        <div class="grid lg:grid-cols-2 gap-8">
+            <div class="bento-card p-16 reveal"><h4 class="text-3xl font-bold uppercase mb-8 text-[var(--lime)]">Общие риски</h4><p class="text-white/40 leading-relaxed">Разделяем финансовые риски проекта.</p></div>
+            <div class="bento-card p-16 reveal"><h4 class="text-3xl font-bold uppercase mb-8 text-[var(--lime)]">Глобальный рынок</h4><p class="text-white/40 leading-relaxed">Готовим продукт к экспансии.</p></div>
+        </div>
+    </section>
+
+    <!-- 5. КЕЙСЫ (ОРИГИНАЛ + ПУНКТИР) -->
+    <section id="cases" class="py-40 px-6 md:px-12 max-w-7xl mx-auto">
+        <h2 class="text-xs font-black uppercase tracking-[0.8em] text-white/20 mb-16 reveal text-left">Кейсы</h2>
+        <div class="schematic-container reveal">
+            <svg class="schematic-svg" viewBox="0 0 1000 700">
+                <g stroke="var(--lime)" stroke-width="1.5" stroke-dasharray="10,6" stroke-opacity="0.4" fill="none">
+                    <line x1="275" y1="175" x2="375" y2="175" />
+                    <line x1="199" y1="290" x2="251" y2="410" />
+                    <line x1="438" y1="284" x2="362" y2="416" />
+                    <line x1="562" y1="284" x2="638" y2="416" />
+                    <line x1="625" y1="175" x2="725" y2="175" />
+                    <line x1="801" y1="290" x2="749" y2="410" />
+                </g>
+            </svg>
+            <a href="cases.html" class="gear-node node-neuro"><svg class="gear-svg-border"><circle cx="105" cy="105" r="104" fill="none" stroke="var(--lime)" stroke-width="1.5" stroke-dasharray="10,6"/></svg><div class="gear-label">Neuroenot</div></a>
+            <a href="cases.html" class="gear-node node-cool"><svg class="gear-svg-border rev"><circle cx="105" cy="105" r="104" fill="none" stroke="var(--lime)" stroke-width="1.5" stroke-dasharray="10,6"/></svg><div class="gear-label">CoolTrackVision</div></a>
+            <a href="cases.html" class="gear-node node-meta"><svg class="gear-svg-border"><circle cx="105" cy="105" r="104" fill="none" stroke="var(--lime)" stroke-width="1.5" stroke-dasharray="10,6"/></svg><div class="gear-label">Metaverse</div></a>
+            <a href="cases.html" class="gear-node node-ai"><svg class="gear-svg-border rev"><circle cx="105" cy="105" r="104" fill="none" stroke="var(--lime)" stroke-width="1.5" stroke-dasharray="10,6"/></svg><div class="gear-label">AI Models</div></a>
+            <a href="cases.html" class="gear-node node-andro"><svg class="gear-svg-border"><circle cx="105" cy="105" r="104" fill="none" stroke="var(--lime)" stroke-width="1.5" stroke-dasharray="10,6"/></svg><div class="gear-label">Androbot</div></a>
+        </div>
+    </section>
+
+    <!-- ОРИГИНАЛЬНЫЙ ПОДВАЛ -->
+    <footer id="contact" class="pt-60 pb-20 px-10 border-t border-white/5 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-40 overflow-hidden text-center"><h2 class="text-[18vw] font-black uppercase tracking-tighter leading-none text-white/[0.02] select-none">STAGEONE</h2></div>
+            <div class="grid lg:grid-cols-12 gap-24">
+                <div class="lg:col-span-4 space-y-10">
+                    <div class="text-[10px] uppercase tracking-[0.8em] text-[var(--lime)] font-bold">Юридическая информация</div>
+                    <div class="space-y-3 text-[11px] text-white/30 uppercase tracking-[0.3em]"><p class="text-white font-bold">ООО «СТЕЙДЖВАН»</p><p>ИНН: 7707474872</p><p>Москва, ул. Новослободская, д. 20</p></div>
+                </div>
+                <div class="lg:col-span-4 space-y-10">
+                    <div class="text-[10px] uppercase tracking-[0.8em] text-white/20 font-bold">Навигация</div>
+                    <div class="flex flex-col space-y-4 text-[11px] uppercase tracking-widest text-white/40">
+                        <a href="#about" class="hover:text-white transition">О компании</a>
+                        <a href="#directions" class="hover:text-white transition">Направления</a>
+                        <a href="#unique" class="hover:text-white transition">Уникальность</a>
+                        <a href="cases.html" class="hover:text-white transition">Кейсы</a>
+                        <a href="about.html" class="hover:text-white transition">Технологический стек</a>
+                    </div>
+                </div>
+                <div class="lg:col-span-4 space-y-10">
+                    <div class="text-[10px] uppercase tracking-[0.8em] text-white/20 font-bold">Контакты</div>
+                    <a href="mailto:info@stageone.space" class="text-[14px] uppercase tracking-widest text-[var(--lime)] font-bold">info@stageone.space</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

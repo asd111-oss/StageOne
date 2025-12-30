@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О компании — StageOne</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Plus+Jakarta+Sans:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --lime: #ccff00; --bg: #050505; --card: rgba(255, 255, 255, 0.03); }
+        body { background-color: var(--bg); color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; cursor: default; }
+        .noise::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.05; pointer-events: none; z-index: 50; }
+        .s-glyph { font-family: 'Orbitron', sans-serif; font-weight: 900; line-height: 0; display: block; }
+        .bento-card { background: var(--card); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 40px; transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+        .tech-tag { padding: 6px 16px; border: 1px solid rgba(255,255,255,0.08); border-radius: 100px; font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        .tech-tag:hover { border-color: var(--lime); color: var(--lime); transform: scale(1.05); }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.23, 1, 0.32, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body class="noise">
+    <nav class="fixed top-8 left-1/2 -translate-x-1/2 z-[100] w-[90%] max-w-7xl flex justify-between items-center px-8 py-4 bg-black/40 backdrop-blur-3xl border border-white/5 rounded-full">
+        <a href="index.html" class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-[var(--lime)] rounded-full flex items-center justify-center"><span class="s-glyph text-black text-xl">S</span></div>
+            <span class="text-[10px] font-extrabold uppercase tracking-[0.4em] opacity-40">StageOne</span>
+        </a>
+        <div class="flex items-center space-x-10">
+            <div class="relative group">
+                <button class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 group-hover:text-[var(--lime)] transition py-2">Компания</button>
+                <div class="absolute top-full right-0 mt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform scale-95 group-hover:scale-100">
+                    <div class="bg-black/95 border border-white/10 p-8 rounded-[32px] backdrop-blur-3xl w-64 space-y-5 shadow-2xl text-right">
+                        <a href="index.html#about" class="block text-[10px] uppercase tracking-widest text-white/40 hover:text-[var(--lime)]">О компании</a>
+                        <a href="index.html#directions" class="block text-[10px] uppercase tracking-widest text-white/40 hover:text-[var(--lime)]">Направления</a>
+                        <a href="cases.html" class="block text-[10px] uppercase tracking-widest text-white/40 hover:text-[var(--lime)]">Кейсы</a>
+                        <a href="about.html" class="block text-[10px] uppercase tracking-widest text-white/40 hover:text-[var(--lime)]">Стек технологий</a>
+                    </div>
+                </div>
+            </div>
+            <a href="index.html#contact" class="px-8 py-3 bg-white text-black text-[10px] font-extrabold uppercase tracking-widest rounded-full hover:bg-[var(--lime)] transition-all">Связаться</a>
+        </div>
+    </nav>
+
+    <section class="pt-60 pb-20 px-6 md:px-12 max-w-7xl mx-auto">
+        <h1 class="text-7xl md:text-[10rem] font-black uppercase tracking-tighter leading-none mb-20 reveal">О компании</h1>
+        
+        <div class="grid lg:grid-cols-12 gap-8">
+            <div class="lg:col-span-8 bento-card p-16 reveal">
+                <h2 class="text-[10px] font-black text-[var(--lime)] uppercase tracking-[0.5em] mb-12">Философия</h2>
+                <p class="text-3xl md:text-5xl font-bold tracking-tighter leading-tight">Мы верим в синергию <span class="text-[var(--lime)]">математического подхода</span> и продуктовой смелости.</p>
+                <div class="mt-20 grid md:grid-cols-2 gap-10 text-white/40 text-sm leading-relaxed">
+                    <p>Аккредитованная ИТ-компания. Резидент Сколково и Московского инновационного кластера.</p>
+                    <p>Собственная R&D лаборатория для разработки решений в области Deep Learning и CV.</p>
+                </div>
+            </div>
+            <div class="lg:col-span-4 bento-card p-16 bg-[var(--lime)] text-black border-none reveal">
+                <h3 class="text-3xl font-black uppercase tracking-tighter leading-tight">Shared <br>Risks <br>Model</h3>
+            </div>
+
+            <!-- ПОЛНЫЙ ТЕХНОЛОГИЧЕСКИЙ СТЕК -->
+            <div class="lg:col-span-12 py-20">
+                <h2 class="text-4xl font-bold uppercase tracking-tighter mb-16 reveal">Технологический стек</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bento-card p-10 space-y-8 reveal">
+                        <h3 class="text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--lime)]">Frontend</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="tech-tag">CSS</span><span class="tech-tag">javascript</span><span class="tech-tag">angularjs</span>
+                            <span class="tech-tag">reactjs</span><span class="tech-tag">HTML</span><span class="tech-tag">Vue</span>
+                            <span class="tech-tag">typescript</span><span class="tech-tag">Ember.js</span>
+                        </div>
+                    </div>
+                    <div class="bento-card p-10 space-y-8 reveal">
+                        <h3 class="text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--lime)]">Backend</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="tech-tag">Python</span><span class="tech-tag">Java</span><span class="tech-tag">Kotlin</span>
+                            <span class="tech-tag">PHP</span><span class="tech-tag">C#</span><span class="tech-tag">.NET FW</span>
+                            <span class="tech-tag">YII2</span><span class="tech-tag">Symfony</span><span class="tech-tag">Laravel</span>
+                            <span class="tech-tag">Node.js</span><span class="tech-tag">Go</span>
+                        </div>
+                    </div>
+                    <div class="bento-card p-10 space-y-8 reveal">
+                        <h3 class="text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--lime)]">DB & devops</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="tech-tag">Postgresql</span><span class="tech-tag">Oracle</span><span class="tech-tag">mysql</span><span class="tech-tag">MS SQL</span>
+                        </div>
+                    </div>
+                    <div class="bento-card p-10 space-y-8 reveal">
+                        <h3 class="text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--lime)]">BA/SA</h3>
+                        <p class="text-[11px] text-white font-bold uppercase tracking-widest">Бизнес и системный анализ</p>
+                    </div>
+                    <div class="bento-card p-10 space-y-8 reveal">
+                        <h3 class="text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--lime)]">Базы данных</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="tech-tag">Mysql</span><span class="tech-tag">mongodb</span><span class="tech-tag">elasticsearch</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="pt-60 pb-20 px-10 border-t border-white/5 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-40 overflow-hidden text-center"><h2 class="text-[18vw] font-black uppercase tracking-tighter leading-none text-white/[0.02] select-none">STAGEONE</h2></div>
+            <div class="grid lg:grid-cols-12 gap-24">
+                <div class="lg:col-span-4 space-y-10">
+                    <div class="text-[10px] uppercase tracking-[0.8em] text-[var(--lime)] font-bold">Юридическая информация</div>
+                    <div class="space-y-3 text-[11px] text-white/30 uppercase tracking-[0.3em]"><p class="text-white font-bold">ООО «СТЕЙДЖВАН»</p><p>ИНН: 7707474872</p><p>Москва, ул. Новослободская, д. 20</p></div>
+                </div>
+                <div class="lg:col-span-4 space-y-10">
+                    <div class="text-[10px] uppercase tracking-[0.8em] text-white/20 font-bold">Навигация</div>
+                    <div class="flex flex-col space-y-4 text-[11px] uppercase tracking-widest text-white/40">
+                        <a href="index.html#about" class="hover:text-white transition">О компании</a>
+                        <a href="index.html#directions" class="hover:text-white transition">Направления</a>
+                        <a href="index.html#unique" class="hover:text-white transition">Уникальность</a>
+                        <a href="cases.html" class="hover:text-white transition">Кейсы</a>
+                        <a href="about.html" class="hover:text-white transition">Технологический стек</a>
+                    </div>
+                </div>
+                <div class="lg:col-span-4 space-y-10">
+                    <div class="text-[10px] uppercase tracking-[0.8em] text-white/20 font-bold">Контакты</div>
+                    <a href="mailto:info@stageone.space" class="text-[14px] uppercase tracking-widest text-[var(--lime)] font-bold">info@stageone.space</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
