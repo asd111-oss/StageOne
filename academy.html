@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>StageOne Academy — обучение ИИ</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="base.css" />
+<style>
+  .block { padding: 75px 0; }
+  .kicker { display: inline-flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 22px; }
+  .kicker::before { content: ""; width: 26px; height: 1px; background: var(--accent); }
+  .ac-hero h1 { max-width: 18ch; }
+  .ac-hero .sub { max-width: 46ch; }
+
+  /* formats */
+  .fmt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .fmt-card { position: relative; overflow: hidden; transform-style: preserve-3d; will-change: transform; display: flex; flex-direction: column; min-height: 470px; background: #1e1c22; border: 1px solid var(--line-2); border-radius: 22px; padding: 40px; transition: border-color .25s; }
+  .fmt-card:hover { border-color: var(--accent-line); }
+  .fmt-card > * { position: relative; z-index: 1; }
+  .fmt-card .holo-glow { position: absolute; inset: 0; z-index: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .35s ease; background: radial-gradient(460px circle at var(--bg-x, 50%) var(--bg-y, 50%), rgba(167,139,255,.18), transparent 60%); }
+  .fmt-card:hover .holo-glow { opacity: 1; }
+  .fmt-card .tag { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: var(--accent-2); letter-spacing: .08em; }
+  .fmt-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 30px; letter-spacing: -.02em; margin: 16px 0 8px; }
+  .fmt-card .lead { font-size: 16px; color: var(--ink-70); line-height: 1.45; }
+  .fmt-list { list-style: none; padding: 0; margin: 26px 0 30px; display: flex; flex-direction: column; gap: 13px; }
+  .fmt-list li { position: relative; padding-left: 26px; font-size: 15px; line-height: 1.45; color: var(--ink-70); }
+  .fmt-list li::before { content: ""; position: absolute; left: 0; top: 6px; width: 10px; height: 10px; border-radius: 3px; background: var(--accent); }
+  .fmt-card .btn-pri { margin-top: auto; align-self: flex-start; }
+
+  /* tracks */
+  /* tracks — reuse the pinned stacking from base (.services/.serv-*) */
+  .track-card { flex-direction: column; justify-content: flex-start; padding: 56px 52px; }
+  .track-num { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: var(--accent); letter-spacing: .08em; }
+  .track-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(24px, 2.6vw, 34px); letter-spacing: -.02em; margin: 14px 0 16px; max-width: 24ch; }
+  .track-card p { font-size: 16px; line-height: 1.6; color: var(--ink-55); margin: 0; max-width: 74ch; }
+  .track-card .serv-cta { margin-top: 26px; align-self: flex-start; }
+  .track-pill { display: inline-flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent-2); background: var(--accent-soft); border: 1px solid var(--accent-line); border-radius: 999px; padding: 6px 13px; margin-left: 12px; vertical-align: middle; }
+  .track-card.is-soon .track-num, .track-card.is-soon h3 { color: var(--ink-70); }
+  .track-pill--corner { position: absolute; top: 28px; right: 32px; margin-left: 0; z-index: 2; }
+
+  /* cta band */
+  .cta-band { background: radial-gradient(120% 130% at 80% 0%, var(--bg-2), var(--bg)); border: 1px solid var(--line-2); border-radius: 28px; padding: clamp(40px, 6vw, 72px); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 22px; }
+  .cta-band h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(30px, 4.4vw, 52px); letter-spacing: -.03em; line-height: 1.04; }
+  .cta-band p { font-size: 17px; line-height: 1.55; color: var(--ink-70); max-width: 52ch; margin: 0; }
+  .cta-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+
+  @media (max-width: 860px) {
+    .fmt-grid { grid-template-columns: 1fr; }
+    .sub-grid { grid-template-columns: 1fr; }
+    .track-pill--corner { position: static; order: 9; align-self: flex-start; top: auto; right: auto; margin-top: 22px; }
+  }
+</style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+<div id="preloader">
+  <span class="brand pre-brand">stage<b>one</b></span>
+  <svg class="pre-trace" width="320" height="8" viewBox="0 0 320 8" fill="none" aria-hidden="true">
+    <path d="M0,4 L320,4" stroke="#a78bff" stroke-opacity="0.15" stroke-width="2" />
+    <path d="M0,4 L320,4" stroke="url(#preGrad)" stroke-linecap="round" stroke-width="2.5" />
+    <defs>
+      <linearGradient id="preGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="180" y2="0">
+        <stop stop-color="#7049f6" stop-opacity="0" />
+        <stop stop-color="#a78bff" />
+        <stop offset="1" stop-color="#7049f6" stop-opacity="0" />
+        <animate attributeName="x1" values="-200;320" dur="1.3s" repeatCount="indefinite" />
+        <animate attributeName="x2" values="-20;500" dur="1.3s" repeatCount="indefinite" />
+      </linearGradient>
+    </defs>
+  </svg>
+</div>
+
+<header id="header">
+  <div class="wrap nav">
+    <a href="StageOne.html" class="brand">stage<b>one</b></a>
+    <div class="nav-right">
+      <div class="nav-dd">
+        <a href="company.html" class="nav-dd-trigger">Компания
+          <svg class="dd-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+        <div class="nav-dd-menu">
+          <a href="company.html">О компании</a>
+          <a href="academy.html">Academy</a>
+          <a href="StageOne.html#products">Продукты</a>
+          <a href="StageOne.html#services">Услуги</a>
+          <a href="company.html#stack">Технологический стек</a>
+        </div>
+      </div>
+      <a href="https://t.me/StageOne_business" target="_blank" rel="noopener" class="nav-cta">Связаться</a>
+    </div>
+    <button class="nav-toggle" aria-label="Меню" aria-expanded="false">
+      <svg class="icon-menu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  </header>
+
+<div id="mobile-menu">
+    <a class="m-link" href="company.html">О компании</a>
+    <a class="m-link" href="academy.html">Academy</a>
+    <a class="m-link" href="StageOne.html#products">Продукты</a>
+    <a class="m-link" href="StageOne.html#services">Услуги</a>
+    <a class="m-link" href="company.html#stack">Технологический стек</a>
+    <a class="nav-cta" href="https://t.me/StageOne_business" target="_blank" rel="noopener">Связаться</a>
+  </div>
+
+<main id="top">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero ac-hero">
+    <div class="hero-glow"></div>
+    <div class="wrap">
+      <span class="kicker">Academy</span>
+      <h1>Научитесь применять <span>ИИ</span> в своей работе</h1>
+      <p class="sub">Практические курсы для специалистов разных направлений</p>
+      <div class="actions">
+        <a href="#formats" class="btn-pri">Выбрать формат <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#tracks" class="btn-sec">Смотреть направления →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FORMATS ===================== -->
+  <section class="block" id="formats">
+    <div class="wrap">
+      <div class="sec-head mrev">
+        <div>
+          <span class="eyebrow">Форматы</span>
+          <h2 class="sec-title">Два формата</h2>
+        </div>
+      </div>
+      <div class="fmt-grid">
+        <article class="fmt-card mrev">
+          <div class="holo-glow"></div>
+          <span class="tag">01 · Формат</span>
+          <h3>Групповые занятия</h3>
+          <p class="lead">Практика с реальными инструментами</p>
+          <ul class="fmt-list">
+            <li>Практика + Q&amp;A</li>
+            <li>Рабочий ИИ-инструмент по итогам курса</li>
+            <li>Закрытое сообщество участников</li>
+            <li>Поддержка куратора в чате</li>
+          </ul>
+          <a href="https://t.me/StageOne_business" target="_blank" rel="noopener" class="btn-pri">Записаться</a>
+        </article>
+        <article class="fmt-card mrev">
+          <div class="holo-glow"></div>
+          <span class="tag">02 · Формат</span>
+          <h3>Корпоративная программа</h3>
+          <p class="lead">Программа под задачи вашей компании</p>
+          <ul class="fmt-list">
+            <li>Программа под профиль вашей команды</li>
+            <li>Обучение на примерах вашего бизнеса</li>
+            <li>Интеграция с инструментами компании</li>
+          </ul>
+          <a href="https://t.me/StageOne_business" target="_blank" rel="noopener" class="btn-pri">Обсудить программу</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TRACKS (pinned stacking) ===================== -->
+  <section class="services mobstack" id="tracks">
+    <div class="serv-scroll">
+      <div class="serv-head-m mrev">
+        <span class="eyebrow">Направления обучения</span>
+        <h2 class="sec-title">Три отраслевых трека</h2>
+        <p class="sec-lede">Каждый трек заточен под реальные задачи конкретной сферы</p>
+      </div>
+      <div class="serv-stage">
+        <div class="wrap">
+          <div class="sec-head mrev">
+            <div>
+              <span class="eyebrow">Направления обучения</span>
+              <h2 class="sec-title">Три отраслевых трека</h2>
+            </div>
+            <p class="sec-lede">Каждый трек заточен под реальные задачи конкретной сферы</p>
+          </div>
+          <div class="serv-stack">
+            <article class="serv-card track-card" data-i="0">
+              <span class="track-num">01 · Строительство</span>
+              <h3>ИИ в работе подрядчика</h3>
+              <p>Применение ИИ-инструментов в ежедневной работе подрядчика: автоматизация документооборота, работа с чертежами, контроль объёмов и сроков</p>
+              <a href="https://t.me/StageOne_business" target="_blank" rel="noopener" class="serv-cta">Перейти →</a>
+            </article>
+            <article class="serv-card track-card" data-i="1">
+              <span class="track-num">02 · Производство и промышленность</span>
+              <h3>Курсы для производства — от техотдела до закупок</h3>
+              <p>Три специализированных курса для ключевых ролей производственного предприятия</p>
+              <a href="https://t.me/StageOne_business" target="_blank" rel="noopener" class="serv-cta">Подробнее →</a>
+            </article>
+            <article class="serv-card track-card is-soon" data-i="2">
+              <span class="track-pill track-pill--corner">Скоро</span>
+              <span class="track-num">03 · Предприниматели и соло-фаундеры</span>
+              <h3>Трек в разработке</h3>
+              <p>Курс находится в разработке. Следите за обновлениями</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA ===================== -->
+  <section class="block">
+    <div class="wrap">
+      <div class="cta-band mrev">
+        <h2>Готовы начать?</h2>
+        <p>Выберите формат или свяжитесь с нами — поможем подобрать курс под вашу профессию и уровень подготовки</p>
+        <div class="cta-actions">
+          <a href="#formats" class="btn-pri">Выбрать формат</a>
+          <a href="https://t.me/StageOne_business" target="_blank" rel="noopener" class="btn-sec">Написать нам →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top mrev">
+      <div class="foot-brand">
+        <a href="StageOne.html" class="brand">stage<b>one</b></a>
+        <p>Цифровая диверсификация бизнеса</p>
+        <div class="foot-legal">
+          <span>ООО «СТЕЙДЖВАН»</span>
+          <span>ИНН: 7707474872 · КПП: 770701001</span>
+          <span>ОГРН: 1227700633885</span>
+          <span>ОКВЭД: 62.01</span>
+          <span>Коды ИТ (Пр. Минцифры № 449): 1.01, 3.01, 8.01, 10.0</span>
+          <span>Москва, ул. Новослободская, 20</span>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Компания</h4>
+        <a href="company.html">О компании</a>
+        <a href="academy.html">Academy</a>
+        <a href="StageOne.html#products">Продукты</a>
+        <a href="StageOne.html#services">Услуги</a>
+        <a href="company.html#stack">Технологический стек</a>
+      </div>
+      <div class="foot-col">
+        <h4>Контакты</h4>
+        <a href="mailto:info@stageone.space">info@stageone.space</a>
+        <a href="tel:+79966729471">+7 (996) 672-94-71</a>
+      </div>
+      <div class="foot-col">
+        <h4>Документы</h4>
+        <a href="#">Политика конфиденциальности</a>
+      </div>
+    </div>
+    <div class="foot-bot mrev">
+      <p>© 2026 StageOne. Все права защищены</p>
+    </div>
+  </div>
+</footer>
+
+<script src="base.js"></script>
+
+<template id="__bundler_thumbnail" data-bg-color="#15141a">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#15141a"/>
+    <circle cx="820" cy="300" r="260" fill="#7049f6" opacity="0.28"/>
+    <circle cx="430" cy="520" r="200" fill="#a78bff" opacity="0.16"/>
+    <text x="600" y="430" font-family="'Space Grotesk', sans-serif" font-size="150" font-weight="700" letter-spacing="-6" text-anchor="middle" fill="#f1efe9">stage<tspan fill="#7049f6">one</tspan></text>
+  </svg>
+</template>
+</body>
+</html>
