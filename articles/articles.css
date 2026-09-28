@@ -1,0 +1,107 @@
+.skip-link {
+  position: fixed;
+  left: 18px;
+  top: 18px;
+  z-index: 10000;
+  transform: translateY(-160%);
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 700;
+}
+.skip-link:focus { transform: translateY(0); }
+
+.articles-hero { padding: clamp(120px, 16vh, 178px) 0 54px; }
+.articles-hero .eyebrow { margin-bottom: 20px; }
+.articles-hero h1 {
+  max-width: min(16ch, 100%);
+  overflow-wrap: anywhere;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(44px, 7vw, 86px);
+  line-height: .98;
+  letter-spacing: -.045em;
+}
+.articles-hero h1 span { color: var(--accent); }
+.articles-hero p {
+  max-width: min(58ch, 100%);
+  overflow-wrap: anywhere;
+  margin: 26px 0 0;
+  color: var(--ink-70);
+  font-size: clamp(17px, 2vw, 20px);
+  line-height: 1.6;
+}
+.articles-shell { padding: 34px 0 110px; }
+.articles-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 26px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+.articles-toolbar h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(24px, 3vw, 34px); }
+.article-status { color: var(--ink-55); font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+.article-status[data-state="error"] { color: #ffb4b4; }
+.article-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.article-list:empty::before {
+  content: "Здесь появятся утверждённые материалы StageOne.";
+  grid-column: 1 / -1;
+  padding: 42px;
+  border: 1px dashed var(--line-2);
+  border-radius: 20px;
+  color: var(--ink-55);
+  text-align: center;
+}
+.article-card {
+  position: relative;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(28px, 4vw, 40px);
+  border: 1px solid var(--line-2);
+  border-radius: 22px;
+  background: var(--surf);
+  transition: border-color .2s, transform .2s, background .2s;
+}
+.article-card:hover { transform: translateY(-3px); border-color: var(--accent-line); background: var(--surf-2); }
+.article-card__meta { color: var(--accent-2); font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+.article-card h2 { margin: 20px 0 14px; font-family: 'Space Grotesk', sans-serif; font-size: clamp(24px, 3vw, 32px); line-height: 1.12; letter-spacing: -.025em; }
+.article-card h2 a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.article-card p { margin: 0 0 28px; color: var(--ink-70); font-size: 15.5px; line-height: 1.65; }
+.article-card__action { margin-top: auto; color: var(--ink); font-size: 14px; font-weight: 600; }
+
+.article-page { padding: clamp(116px, 15vh, 164px) 0 110px; }
+.article-back { display: inline-flex; margin-bottom: 34px; color: var(--ink-70); font-size: 14px; font-weight: 600; }
+.article-back:hover { color: var(--ink); }
+.article-header, .article-body { max-width: 820px; margin-inline: auto; }
+.article-kicker { color: var(--accent-2); font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
+.article-header h1 { margin-top: 18px; font-family: 'Space Grotesk', sans-serif; font-size: clamp(38px, 6vw, 68px); line-height: 1.03; letter-spacing: -.04em; }
+.article-summary { margin: 24px 0 0; color: var(--ink-70); font-size: clamp(17px, 2vw, 20px); line-height: 1.65; }
+.article-divider { max-width: 820px; height: 1px; margin: 44px auto; background: var(--line); }
+.article-body { color: var(--ink-70); font-size: 17px; line-height: 1.78; }
+.article-body > :first-child { margin-top: 0; }
+.article-body h2, .article-body h3 { color: var(--ink); font-family: 'Space Grotesk', sans-serif; line-height: 1.18; letter-spacing: -.025em; scroll-margin-top: 100px; }
+.article-body h2 { margin: 48px 0 18px; font-size: clamp(28px, 4vw, 38px); }
+.article-body h3 { margin: 34px 0 14px; font-size: clamp(22px, 3vw, 28px); }
+.article-body p { margin: 0 0 22px; }
+.article-body ul, .article-body ol { margin: 0 0 26px; padding-left: 26px; }
+.article-body li { margin: 8px 0; }
+.article-body a { color: var(--accent-2); text-decoration: underline; text-underline-offset: 3px; }
+.article-body blockquote { margin: 32px 0; padding: 20px 24px; border-left: 3px solid var(--accent); background: var(--accent-soft); color: var(--ink); }
+.article-body pre { overflow-x: auto; padding: 20px; border: 1px solid var(--line-2); border-radius: 14px; background: rgba(0,0,0,.26); font: 14px/1.6 'JetBrains Mono', monospace; }
+.article-body code { font-family: 'JetBrains Mono', monospace; }
+.article-sources { margin-top: 52px; padding-top: 28px; border-top: 1px solid var(--line); }
+
+@media (max-width: 760px) {
+  .articles-hero h1 { font-size: clamp(38px, 11vw, 52px); }
+  .article-list { grid-template-columns: 1fr; }
+  .articles-toolbar { align-items: flex-start; flex-direction: column; gap: 10px; }
+  .article-card { min-height: 230px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .article-card { transition: none; }
+  .article-card:hover { transform: none; }
+}

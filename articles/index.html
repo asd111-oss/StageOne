@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Практические материалы StageOne об искусственном интеллекте, цифровых продуктах и автоматизации бизнеса." />
+<title>Публикации StageOne</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../base.css" />
+<link rel="stylesheet" href="articles.css" />
+</head>
+<body>
+<a class="skip-link" href="#content">К материалам</a>
+<canvas id="bg-canvas"></canvas>
+<header id="header">
+  <div class="wrap nav">
+    <a href="../index.html" class="brand">stage<b>one</b></a>
+    <div class="nav-right">
+      <div class="nav-dd">
+        <a href="../company.html" class="nav-dd-trigger">Компания
+          <svg class="dd-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+        <div class="nav-dd-menu">
+          <a href="../company.html">О компании</a>
+          <a href="../index.html#directions">Наши направления</a>
+          <a href="../academy.html">Academy</a>
+          <a href="../index.html#products">Продукты</a>
+          <a href="../company.html#stack">Технологический стек</a>
+        </div>
+      </div>
+      <a href="./" class="nav-link" aria-current="page">Публикации</a>
+      <a href="https://t.me/StageOne_business" target="_blank" rel="noopener" class="nav-cta">Связаться</a>
+    </div>
+    <button class="nav-toggle" aria-label="Меню" aria-expanded="false">
+      <svg class="icon-menu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+</header>
+<div id="mobile-menu">
+  <a class="m-link" href="../company.html">О компании</a>
+  <a class="m-link" href="../index.html#directions">Наши направления</a>
+  <a class="m-link" href="../academy.html">Academy</a>
+  <a class="m-link" href="../index.html#products">Продукты</a>
+  <a class="m-link" href="../company.html#stack">Технологический стек</a>
+  <a class="m-link" href="./" aria-current="page">Публикации</a>
+  <a class="nav-cta" href="https://t.me/StageOne_business" target="_blank" rel="noopener">Связаться</a>
+</div>
+
+<main id="content">
+  <section class="articles-hero">
+    <div class="wrap">
+      <span class="eyebrow">Практика StageOne</span>
+      <h1>Разбираем технологии <span>по делу</span></h1>
+      <p>Материалы об ИИ, цифровых продуктах и автоматизации: с проверяемыми источниками, рабочими примерами и понятными ограничениями.</p>
+    </div>
+  </section>
+  <section class="articles-shell" aria-labelledby="articles-title">
+    <div class="wrap">
+      <div class="articles-toolbar">
+        <h2 id="articles-title">Последние материалы</h2>
+        <span class="article-status" data-article-status aria-live="polite">Загрузка…</span>
+      </div>
+      <div class="article-list" data-article-list></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-bot mrev">
+      <p>© 2026 StageOne. Все права защищены</p>
+      <div class="foot-legal"><a href="../privacy.html">Политика конфиденциальности</a></div>
+    </div>
+  </div>
+</footer>
+<script src="../base.js"></script>
+<script src="articles.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "name": "stageone-public-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "verify": "node --check articles/articles.js && node scripts/validate-site.mjs"
+  }
+}
