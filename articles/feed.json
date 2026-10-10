@@ -2,6 +2,15 @@
   "schemaVersion": "stageone-articles-v1",
   "items": [
     {
+      "contentId": "item_31efb8ae-2f6d-46bb-a7ed-853604179ebd",
+      "revisionHash": "cf53c6f5c9795c003f2db06e91bfef98573ad354d10b31afae61efe7fd47d9de",
+      "title": "Как запустить ИИ-пилот в ПТО: один процесс и понятные критерии проверки",
+      "summary": "Рабочая задача Руководители ПТО и главные инженеры нередко рассматривают ИИ инструменты для ускорения рутинных операций — проверки комплектности документов, сверки спецификаций, поиска несоответствий в исполнительной документации.",
+      "category": "article",
+      "href": "./kak-zapustit-ii-pilot-v-pto-odin-process-i-ponyatnye-kriterii-pr-1996b37a/",
+      "approvedAt": "2026-10-10T15:00:38.151Z"
+    },
+    {
       "contentId": "item_e9bddbf3-bbf9-47d7-b607-6c14adceb5ac",
       "revisionHash": "4ad0ea009d3ea7450079063cf020613a29dc2c6d8ab391ff13e54e019cc8ed12",
       "title": "Где ИИ помогает ПТО, а где решение остаётся за инженером",
